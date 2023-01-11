@@ -21,6 +21,19 @@ export default function Read() {
         localStorage.setItem('Checkbox', checkbox);
     }
 
+    const onDelete = (id) => {
+        axios.delete(`https://63be5402e348cb07620cb9c8.mockapi.io/Fake_Data/${id}`).then(() => {
+            getData();
+        })
+    }
+
+    const getData = () => {
+        axios.get(`https://63be5402e348cb07620cb9c8.mockapi.io/Fake_Data`)
+            .then((getData) => {
+                 setAPIData(getData.data);
+             })
+    }
+
     return (
 
         <div>
@@ -46,6 +59,9 @@ export default function Read() {
                             <Link to='/update'>
                                 <Table.Cell> <Button onClick={() => setData(data)}>Atualizar</Button> </Table.Cell>
                             </Link>
+                            <Table.Cell>
+                                <Button onClick={() => onDelete(data.id)}>Deletar</Button>
+                            </Table.Cell>
                         </Table.Row>
                     )})}
                 </Table.Body>
