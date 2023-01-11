@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Table } from 'semantic-ui-react'
+import { Table, Button } from 'semantic-ui-react'
 import axios from 'axios'
+import { Link } from 'react-router-dom';
 
-function Read() {
+export default function Read() {
 
     const [APIData, setAPIData] = useState([]);
         useEffect(() => {
@@ -12,6 +13,14 @@ function Read() {
                 })
         }, [])
 
+    const setData = (data) => {
+        let { id, nome, sobrenome, checkbox } = data;
+        localStorage.setItem('ID', id);
+        localStorage.setItem('Nome', nome);
+        localStorage.setItem('Sobrenome', sobrenome);
+        localStorage.setItem('Checkbox', checkbox);
+    }
+
     return (
 
         <div>
@@ -19,9 +28,10 @@ function Read() {
                 <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>ID</Table.HeaderCell>
-                        <Table.HeaderCell>First Name</Table.HeaderCell>
-                        <Table.HeaderCell>Last Name</Table.HeaderCell>
-                        <Table.HeaderCell>Checked</Table.HeaderCell>
+                        <Table.HeaderCell>Nome</Table.HeaderCell>
+                        <Table.HeaderCell>Sobrenome</Table.HeaderCell>
+                        <Table.HeaderCell>Termos</Table.HeaderCell>
+                        <Table.HeaderCell>Atualizar</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
@@ -32,13 +42,18 @@ function Read() {
                             <Table.Cell>{data.id}</Table.Cell>
                             <Table.Cell>{data.nome}</Table.Cell>
                             <Table.Cell>{data.sobrenome}</Table.Cell>
-                            <Table.Cell>{data.checkbox ? 'Checked' : 'Unchecked'}</Table.Cell>
-                            </Table.Row>
+                            <Table.Cell>{data.checkbox ? 'Concorda' : 'Discorda'}</Table.Cell>
+                            <Link to='/update'>
+                                <Table.Cell> <Button onClick={() => setData(data)}>Atualizar</Button> </Table.Cell>
+                            </Link>
+                            <Table.Cell>
+                                <Button onClick={() => onDelete(data.id)}>Delete</Button>
+                            </Table.Cell>
+                        </Table.Row>
                     )})}
                 </Table.Body>
+                
             </Table>
         </div>
     )
 }
-
-export default Read;
