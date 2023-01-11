@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Button } from 'semantic-ui-react'
-import axios from 'axios'
+import { Table, Button } from 'semantic-ui-react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 export default function Read() {
@@ -60,7 +60,7 @@ export default function Read() {
                                 <Table.Cell> <Button onClick={() => setData(data)}>Atualizar</Button> </Table.Cell>
                             </Link>
                             <Table.Cell>
-                                <Button onClick={() => onDelete(data.id)}>Deletar</Button>
+                                <Button style={{color: 'white', backgroundColor: '#E82613'}} onClick={() => onDelete(data.id)}>Deletar</Button>
                             </Table.Cell>
                         </Table.Row>
                     )})}
