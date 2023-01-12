@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Checkbox, Form } from 'semantic-ui-react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 export default function Update() {
     const [nome, setNome] = useState('');
     const [sobrenome, setSobrenome] = useState('');
     const [checkbox, setCheckbox] = useState(false);
     const [id, setID] = useState(null);
+    let history = useNavigate();
     
     useEffect(() => {
             setID(localStorage.getItem('ID'))
@@ -20,6 +22,8 @@ export default function Update() {
             nome,
             sobrenome,
             checkbox
+        }).then(() => {
+            history.push('/read')
         })
     }
 
