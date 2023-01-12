@@ -13,11 +13,11 @@ function App() {
 
         <h2 className="main-header">React Tv Operações CRUD</h2>
 
-          <Routes>
-            <Route path ='/create' element={<Create/>} />
-            <Route path ='/read' element={<Read/>} />
-            <Route path ='/update' element={<Update/>} />
-          </Routes>
+        <Routes>
+          <Route path ='/create' element={<Create/>} />
+          <Route path ='/read' element={<Read/>} />
+          <Route path ='/update' element={<Update/>} />
+        </Routes>
 
       </div>
     </Router>

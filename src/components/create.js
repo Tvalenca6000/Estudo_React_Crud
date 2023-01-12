@@ -9,13 +9,14 @@ export default function Create() {
     const [checkbox, setCheckbox] = useState(false);
     let history = useNavigate();
 
+    // Função para enviar os dados e redirecionar para o read
     const postData = () => {
         axios.post(`https://63be5402e348cb07620cb9c8.mockapi.io/Fake_Data`, {
             nome,
             sobrenome,
             checkbox
         }).then(() => {
-            history.push('/read')
+            history("/read")
         })
     }
 

@@ -4,15 +4,24 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 export default function Read() {
-
     const [APIData, setAPIData] = useState([]);
-        useEffect(() => {
-            axios.get(`https://63be5402e348cb07620cb9c8.mockapi.io/Fake_Data`)
-                .then((response) => {
-                    setAPIData(response.data);
-                })
-        }, [])
 
+    useEffect(() => {
+        axios.get(`https://63be5402e348cb07620cb9c8.mockapi.io/Fake_Data`)
+            .then((response) => {
+                setAPIData(response.data);
+            })
+    }, [])
+
+    // Função para adquirir os dados dos usuários
+    const getData = () => {
+        axios.get(`https://63be5402e348cb07620cb9c8.mockapi.io/Fake_Data`)
+            .then((getData) => {
+                 setAPIData(getData.data);
+             })
+    }
+
+    // Armazenando dados localmente no navegador para o /update
     const setData = (data) => {
         let { id, nome, sobrenome, checkbox } = data;
         localStorage.setItem('ID', id);
@@ -21,17 +30,11 @@ export default function Read() {
         localStorage.setItem('Checkbox', checkbox);
     }
 
+    // Função para deletar um usuário
     const onDelete = (id) => {
         axios.delete(`https://63be5402e348cb07620cb9c8.mockapi.io/Fake_Data/${id}`).then(() => {
             getData();
         })
-    }
-
-    const getData = () => {
-        axios.get(`https://63be5402e348cb07620cb9c8.mockapi.io/Fake_Data`)
-            .then((getData) => {
-                 setAPIData(getData.data);
-             })
     }
 
     return (

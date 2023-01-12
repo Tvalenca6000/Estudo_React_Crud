@@ -10,6 +10,7 @@ export default function Update() {
     const [id, setID] = useState(null);
     let history = useNavigate();
     
+    // Usando hook para obter os dados do usuário armazenados localmente
     useEffect(() => {
             setID(localStorage.getItem('ID'))
             setNome(localStorage.getItem('Nome'));
@@ -17,13 +18,14 @@ export default function Update() {
             setCheckbox(localStorage.getItem('Checkbox'));
     }, []);
 
+    // Função para atualizar os dados de um usuário e redirecionar para o read
     const updateAPIData = () => {
         axios.put(`https://63be5402e348cb07620cb9c8.mockapi.io/Fake_Data/${id}`, {
             nome,
             sobrenome,
             checkbox
         }).then(() => {
-            history.push('/read')
+            history("/read")
         })
     }
 
